@@ -1,0 +1,6 @@
+game:GetService('Players').LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-277, 24, -1128)
+game:GetService("VirtualUser"):ClickButton1(Vector2.new())
+local vu = game:GetService("VirtualUser")
+vu:ClickButton1(Vector2.new(500,0))
+local humroot = game.Players.LocalPlayer.Character.HumanoidRootPart
+humroot.CFrame = CFrame.new(v.HitBox.Position)
