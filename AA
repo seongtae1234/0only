@@ -5,17 +5,6 @@ local CloseButton = AnimationPack.CloseButton
 
 AnimationPack.Visible = true
 
-function Notification(text)
-    game:GetService("StarterGui"):SetCore("SendNotification",{
-        Title = "Da Hood",
-        Text = text,
-        Icon = "rbxassetid://0",
-        Duration = 3,
-    })
-end
-
-Notification("Free Animation Pack by zefify/REVlENGE")
-
 local LeanAnimation = Instance.new("Animation", Folder)
 LeanAnimation.Name = "LeanAnimation"
 LeanAnimation.AnimationId = "rbxassetid://3152375249"
