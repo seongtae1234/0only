@@ -1,0 +1,130 @@
+if workspace.Players[game.Players.LocalPlayer.Name]:FindFirstChild("[P90]") then
+				workspace.Players[game.Players.LocalPlayer.Name]:FindFirstChild("[P90]").Name = "[P900]"
+			else
+				game.Players.LocalPlayer.Backpack["[P90]"].Parent = workspace.Players[game.Players.LocalPlayer.Name]
+				game.workspace.Players[game.Players.LocalPlayer.Name]:FindFirstChild("[P90]").Name = "[P900]"
+			end
+
+			function Buy()
+				fireclickdetector(workspace.Ignored.Shop["120 [P90 Ammo] - $60"].ClickDetector)
+			end
+
+			local timer = 0
+			local ATM = "nil"
+			local GetAmmoOrReload = false
+			local Cash = false
+
+			function GetCash()
+				for i, v in pairs(workspace.Ignored.Drop:GetChildren()) do
+					if
+						v.Name == "MoneyDrop" and
+							(workspace.Players[game.Players.LocalPlayer.Name].HumanoidRootPart.Position - v.Position).Magnitude < 12
+					then
+						Cash = true
+						fireclickdetector(v.ClickDetector)
+						wait(1)
+						Cash = false
+					end
+				end
+			end
+
+			function getATM()
+				for i, v in pairs(workspace.Cashiers:GetChildren()) do
+					if v:WaitForChild("Humanoid").Health > 0 then
+						local cf = v.Head.CFrame
+						local lv = cf.lookVector
+						game.workspace.Players[game.Players.LocalPlayer.Name].HumanoidRootPart.CFrame =
+							cf + (lv * Vector3.new(0, 0, -3))
+						game.ReplicatedStorage.MainEvent:FireServer("UpdateMousePos", v.Head.Position)
+						return v
+					end
+				end
+			end
+
+			ATM = getATM()
+
+			function reload(name, gun)
+				local A_1 = "Reload"
+				local A_2 = game:GetService("Workspace").Players[name][gun]
+				local Event = game:GetService("ReplicatedStorage").MainEvent
+				Event:FireServer(A_1, A_2)
+			end
+
+			game:GetService("RunService").Heartbeat:Connect(
+			function()
+				GetCash()
+				game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+				if timer == 0 and Cash == false then
+					if game.Players.LocalPlayer.DataFolder.Inventory["[P90]"].Value == "0" and GetAmmoOrReload == false then
+						timer = 10
+						GetAmmoOrReload = true
+						local part = workspace.Ignored.Shop["120 [P90 Ammo] - $60"].Head
+						game.workspace.Players[game.Players.LocalPlayer.Name].HumanoidRootPart.CFrame =
+							CFrame.new(part.CFrame.X, part.CFrame.Y + 4, part.CFrame.Z)
+						game.workspace.Players[game.Players.LocalPlayer.Name]["[P900]"].Parent =
+							game.Players.LocalPlayer.Backpack
+						wait(2)
+						for i = 1, 10 do
+							game.workspace.Players[game.Players.LocalPlayer.Name].HumanoidRootPart.CFrame =
+								CFrame.new(
+									part.CFrame.X + math.random(1, 2),
+									part.CFrame.Y + math.random(1, 2),
+									part.CFrame.Z + math.random(1, 2)
+								)
+							print "e"
+							Buy()
+							wait(1)
+						end
+						game.Players.LocalPlayer.Backpack["[P900]"].Parent =
+							game.workspace.Players[game.Players.LocalPlayer.Name]
+						timer = 0
+						GetAmmoOrReload = false
+						local cf = ATM.Head.CFrame
+						local lv = cf.lookVector
+						game.workspace.Players[game.Players.LocalPlayer.Name].HumanoidRootPart.CFrame =
+							cf + (lv * Vector3.new(0, 0, -3))
+					end
+					if
+						game.workspace.Players[game.Players.LocalPlayer.Name]:WaitForChild("[P900]").Ammo.Value == 0 and
+							GetAmmoOrReload == false
+					then
+						GetAmmoOrReload = true
+						reload(game.Players.LocalPlayer.Name, "[P900]")
+						wait(2)
+						GetAmmoOrReload = false
+					else
+						for i, v in pairs(workspace.Cashiers:GetChildren()) do
+							if v:WaitForChild("Humanoid").Health > 0 then
+								if GetAmmoOrReload == false then
+									if ATM.Humanoid.Health > 0 then
+										game:GetService("VirtualUser"):Button1Down(Vector2.new(0, 0, 0))
+										local cf = ATM.Head.CFrame
+										local lv = cf.lookVector
+										game.workspace.Players[game.Players.LocalPlayer.Name].HumanoidRootPart.CFrame =
+											cf + (lv * Vector3.new(0, 0, -3))
+									end
+								end
+							end
+						end
+					end
+					for i, v in pairs(workspace.Cashiers:GetChildren()) do
+						if v:WaitForChild("Humanoid").Health > 0 then
+							if ATM.Humanoid.Health < 0 and GetAmmoOrReload == false then
+								timer = 10
+								wait(0.1)
+								if GetAmmoOrReload == false then
+									local cf = ATM.Head.CFrame
+									local lv = cf.lookVector
+									game.workspace.Players[game.Players.LocalPlayer.Name].HumanoidRootPart.CFrame =
+										cf + (lv * Vector3.new(0, 0, -3))
+
+									ATM = getATM()
+								end
+								timer = 0
+							end
+						end
+					end
+				end
+			end)
+			
+		
