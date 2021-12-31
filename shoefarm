@@ -1,0 +1,9 @@
+ame.RunService.Stepped:Connect(function()
+				fireclickdetector(game:GetService("Workspace").Ignored["Clean the shoes on the floor and come to me for cash"].ClickDetector)
+				for i, v in pairs(workspace.Ignored.Drop:GetChildren()) do
+					if v.Transparency == 0 and v:IsA("MeshPart") then
+						game.Players.LocalPlayer.Character.HumanoidRootPart.Position = v.Position
+						wait()
+						fireclickdetector(v.ClickDetector)
+					end
+				end
