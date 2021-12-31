@@ -1,0 +1,159 @@
+if game.Players.LocalPlayer.Character.Animate:FindFirstChild("idle") then
+				game.Players.LocalPlayer.Character.Animate.idle:Destroy()
+			end
+			local me = game:service'Players'.LocalPlayer
+			local plr = game.Players.LocalPlayer
+			local savedarmourpos = plr.Character.HumanoidRootPart.Position
+			local toolname = "[Silencer] - $400"
+			plr.Character.HumanoidRootPart.CFrame = CFrame.new(game.Workspace.Ignored.Shop[toolname].Head.Position)
+			wait(.1)
+			fireclickdetector(game.Workspace.Ignored.Shop[toolname].ClickDetector)
+			wait(.1)
+			fireclickdetector(game.Workspace.Ignored.Shop[toolname].ClickDetector)
+			wait(.1)
+			fireclickdetector(game.Workspace.Ignored.Shop[toolname].ClickDetector)
+			wait(.1)
+			fireclickdetector(game.Workspace.Ignored.Shop[toolname].ClickDetector)
+			wait(.1)
+			fireclickdetector(game.Workspace.Ignored.Shop[toolname].ClickDetector)
+			wait(.1)
+			fireclickdetector(game.Workspace.Ignored.Shop[toolname].ClickDetector)
+			wait(.1)
+			me.Character.Humanoid:EquipTool(me.Backpack:FindFirstChild("[Silencer]"))
+			wait(0.001)
+			plr.Character.HumanoidRootPart.CFrame = CFrame.new(savedarmourpos)
+			plr.Character.HumanoidRootPart.CFrame = CFrame.new(savedarmourpos)
+			function bypass()
+				local oh1 = CFrame.new(-346.434296, 52.5954704, 446.756989)
+				local oh2 = game:GetService("Players")
+				local oh3 = oh2.LocalPlayer.Character.HumanoidRootPart
+
+
+				oh3.CFrame = oh1
+				wait(1.5)
+			end
+			repeat
+				wait()
+			until game:IsLoaded()
+
+			if workspace.Players[game.Players.LocalPlayer.Name]:FindFirstChild("[Silencer]") then
+				workspace.Players[game.Players.LocalPlayer.Name]:FindFirstChild("[Silencer]").Name = "[Drxco]"
+
+				function Buy()
+					fireclickdetector(workspace.Ignored.Shop["25 [Silencer Ammo] - $50"].ClickDetector)
+					fireclickdetector(workspace.Ignored.Shop["25 [Silencer Ammo] - $50"].ClickDetector)
+				end
+
+				local ATM = "nil"
+				local idk = false
+				local dineros = false
+				local lol = 0
+
+				function GetATM()
+					bypass()
+					for i, v in pairs(workspace.Cashiers:GetChildren()) do
+						if v:WaitForChild("Humanoid").Health > 0 then
+							local cf = v.Open.CFrame
+							local lv = cf.lookVector
+							game.workspace.Players[game.Players.LocalPlayer.Name].HumanoidRootPart.CFrame = cf + (lv * Vector3.new(0, 0, -2))
+							game.ReplicatedStorage.MainEvent:FireServer("UpdateMousePos", v.Open.Position)
+							return v
+						end
+					end
+				end
+
+				function GETMONEY()
+					for i, v in pairs(workspace.Ignored.Drop:GetChildren()) do
+						if v.Name == "MoneyDrop" and (workspace.Players[game.Players.LocalPlayer.Name].HumanoidRootPart.Position - v.Position).Magnitude < 25
+						then
+							dineros = true
+							fireclickdetector(v.ClickDetector)
+							wait(0.7)
+							dineros = false
+						end
+					end
+				end
+
+				ATM = GetATM()
+
+				function reload(name, gun)
+					local XD1 = "Reload"
+					local XD2 = game:GetService("Workspace").Players[name][gun]
+					local Event = game:GetService("ReplicatedStorage").MainEvent
+					Event:FireServer(XD1, XD2)
+				end
+				game:GetService("RunService").Heartbeat:Connect(function()
+					GETMONEY()
+					game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+					if lol == 0 and dineros == false then
+						if game.Players.LocalPlayer.DataFolder.Inventory["[Silencer]"].Value == "0" and idk == false then
+							lol = 10
+							idk = true
+							local part = workspace.Ignored.Shop["25 [Silencer Ammo] - $50"].Head
+							game.workspace.Players[game.Players.LocalPlayer.Name].HumanoidRootPart.CFrame =
+								CFrame.new(part.CFrame.X, part.CFrame.Y + 4, part.CFrame.Z)
+							game.workspace.Players[game.Players.LocalPlayer.Name]["[Drxco]"].Parent =
+								game.Players.LocalPlayer.Backpack
+							wait(2)
+							for i = 1, 10 do
+								game.workspace.Players[game.Players.LocalPlayer.Name].HumanoidRootPart.CFrame =
+									CFrame.new(
+										part.CFrame.X + math.random(1, 2),
+										part.CFrame.Y + math.random(1, 2),
+										part.CFrame.Z + math.random(1, 2)
+									)
+								Buy()
+								wait(0.5)
+							end
+							game.Players.LocalPlayer.Backpack["[Drxco]"].Parent =
+								game.workspace.Players[game.Players.LocalPlayer.Name]
+							lol = 0
+							idk = false
+							local cf = ATM.Open.CFrame
+							local lv = cf.lookVector
+							game.workspace.Players[game.Players.LocalPlayer.Name].HumanoidRootPart.CFrame =
+								cf + (lv * Vector3.new(0, 0, -2))
+						end
+						if
+							game.workspace.Players[game.Players.LocalPlayer.Name]:WaitForChild("[Drxco]").Ammo.Value == 4 and
+								idk == false
+						then
+							idk = true
+							reload(game.Players.LocalPlayer.Name, "[Drxco]")
+							wait(0.5)
+							idk = false
+						else
+							for i, v in pairs(workspace.Cashiers:GetChildren()) do
+								if v:WaitForChild("Humanoid").Health > 0 then
+									if idk == false then
+										if ATM.Humanoid.Health > 0 then
+											game:GetService("VirtualUser"):Button1Down(Vector2.new(0, 0, 0))
+											local cf = ATM.Open.CFrame
+											local lv = cf.lookVector
+											game.workspace.Players[game.Players.LocalPlayer.Name].HumanoidRootPart.CFrame =
+												cf + (lv * Vector3.new(0, 0, -2))
+										end
+									end
+								end
+							end
+						end
+						for i, v in pairs(workspace.Cashiers:GetChildren()) do
+							if v:WaitForChild("Humanoid").Health > 0 then
+								if ATM.Humanoid.Health < 0 and idk == false then
+									lol = 10
+									wait(0.1)
+									if idk == false then
+										local cf = ATM.Open.CFrame
+										local lv = cf.lookVector
+										game.workspace.Players[game.Players.LocalPlayer.Name].HumanoidRootPart.CFrame =
+											cf + (lv * Vector3.new(0, 0, -2))
+
+										ATM = GetATM()
+									end
+									lol = 0
+								end
+							end
+						end
+					end
+				end)
+			end
