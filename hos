@@ -1,0 +1,20 @@
+game:GetService('Players').LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(116.618, 22.799, -479.274)
+			local job = game:GetService("Workspace").Ignored.HospitalJob
+			while true do
+				wait(3)
+				if job:FindFirstChild('Can I get the Red bottle') then 
+					fireclickdetector(game:GetService("Workspace").Ignored.HospitalJob.Red.ClickDetector)
+					wait(.1)
+					fireclickdetector(game:GetService("Workspace").Ignored.HospitalJob["Can I get the Red bottle"].ClickDetector)
+
+				elseif job:FindFirstChild('Can I get the Green bottle') then
+					fireclickdetector(game:GetService("Workspace").Ignored.HospitalJob.Green.ClickDetector)
+					wait(.1)
+					fireclickdetector(game:GetService("Workspace").Ignored.HospitalJob["Can I get the Green bottle"].ClickDetector)
+				elseif job:FindFirstChild('Can I get the Blue bottle') then
+					fireclickdetector(game:GetService("Workspace").Ignored.HospitalJob.Blue.ClickDetector)
+					wait(.1)
+					fireclickdetector(game:GetService("Workspace").Ignored.HospitalJob["Can I get the Blue bottle"].ClickDetector)
+
+				end
+			end 
