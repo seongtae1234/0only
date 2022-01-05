@@ -1,0 +1,9 @@
+   while true do
+     local args = {
+            [1] = "Block",
+            [2] = true
+        }
+        
+        game:GetService("ReplicatedStorage").MainEvent:FireServer(unpack(args))
+       end
+     
