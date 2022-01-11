@@ -24,7 +24,7 @@ if game.Players.LocalPlayer.Character.Animate:FindFirstChild("idle") then
 			plr.Character.HumanoidRootPart.CFrame = CFrame.new(savedarmourpos)
 			plr.Character.HumanoidRootPart.CFrame = CFrame.new(savedarmourpos)
 			function bypass()
-				local oh1 = CFrame.new(-346.434296, 52.5954704, 446.756989)
+				local oh1 = CFrame.new(169.126266, -121.450089, 182.002182)
 				local oh2 = game:GetService("Players")
 				local oh3 = oh2.LocalPlayer.Character.HumanoidRootPart
 
